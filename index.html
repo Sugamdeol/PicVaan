@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Alchemist ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Image Alchemist ✨</h1>
+            <p>Transform images or create new ones from your imagination!</p>
+        </header>
+
+        <main>
+            <div class="mode-selection card">
+                <h2>Choose Your Path:</h2>
+                <div class="radio-group">
+                    <input type="radio" id="modeEdit" name="generationMode" value="edit" checked>
+                    <label for="modeEdit">Edit Existing Image</label>
+                    <input type="radio" id="modeCreate" name="generationMode" value="create">
+                    <label for="modeCreate">Create New Image from Text</label>
+                </div>
+            </div>
+
+            <div class="controls-grid">
+                <div class="upload-section card" id="uploadSectionContainer">
+                    <h2>1. Your Image</h2>
+                    <div class="upload-options">
+                        <label for="imageUpload" class="upload-button">
+                            <img src="upload-icon.png" alt="Upload Icon" class="upload-icon-img">
+                            <span>Choose Image</span>
+                        </label>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                        
+                        <button id="takePhotoButton" class="upload-button secondary-upload-button">
+                            <img src="camera-icon.png" alt="Camera Icon" class="upload-icon-img">
+                            <span>Take Photo</span>
+                        </button>
+                    </div>
+                    <div class="image-preview-container">
+                        <img id="imagePreview" src="#" alt="Your image" style="display:none;">
+                        <p id="previewPlaceholder" class="preview-placeholder-text">Image preview will appear here</p>
+                    </div>
+                </div>
+
+                <div class="instructions-section card">
+                    <h2 id="instructionsTitle">2. Describe Transformation</h2>
+                    <label for="promptInput" class="sr-only">Transformation Instructions:</label>
+                    <textarea id="promptInput" rows="4" placeholder="e.g., 'a vibrant oil painting', 'a dragon in the sky', 'cyberpunk art style'"></textarea>
+                </div>
+            </div>
+
+            <div class="quality-dimension-section card">
+                <h2><span id="qualityStepNumber">3</span>. Quality & Output Size</h2>
+                <div class="sub-section">
+                    <h3>Quality Level</h3>
+                    <div class="radio-group" id="qualityRadioGroup">
+                        <input type="radio" id="qualityLow" name="imageQuality" value="low">
+                        <label for="qualityLow">Low</label>
+                        <input type="radio" id="qualityMedium" name="imageQuality" value="medium" checked>
+                        <label for="qualityMedium">Medium</label>
+                        <input type="radio" id="qualityHigh" name="imageQuality" value="high">
+                        <label for="qualityHigh">High</label>
+                    </div>
+                </div>
+                <div class="sub-section" id="dimensionsSection">
+                    <h3>Output Dimensions</h3>
+                    <div class="dimension-inputs">
+                        <div>
+                            <label for="outputWidth">Width (px):</label>
+                            <input type="number" id="outputWidth" name="outputWidth" placeholder="e.g., 512" value="512" min="64" max="2048" step="64">
+                        </div>
+                        <div>
+                            <label for="outputHeight">Height (px):</label>
+                            <input type="number" id="outputHeight" name="outputHeight" placeholder="e.g., 512" value="512" min="64" max="2048" step="64">
+                        </div>
+                    </div>
+                    <p class="dimension-note">Note: In 'Edit Image' mode, these often default to the input image's dimensions but can be overridden for the output.</p>
+                </div>
+            </div>
+
+            <button id="transformButton" class="cta-button" disabled>
+                <span class="button-text">Transform!</span>
+                <div class="spinner" style="display: none;"></div>
+            </button>
+
+            <div id="statusMessageContainer" class="status-message-container">
+                 <p id="statusMessage"></p>
+            </div>
+            
+            <div id="creativeCorner" class="card" style="display:none;">
+                <h3>Creative Corner</h3>
+                <p id="creativeThought">Brewing up some brilliance...</p>
+            </div>
+
+            <!-- Mini Game Section -->
+            <div id="miniGameContainer" class="card" style="display:none;">
+                <h3>Quick Game Break! ✨</h3>
+                <p>Hold to shoot. Don't let aliens reach the bottom or hit you!</p>
+                <p>Score: <span id="gameScore">0</span> | Lives: <span id="gameLives">3</span></p>
+                <div id="gameArea">
+                    <!-- Sparkle will be added here by JS -->
+                </div>
+            </div>
+            <!-- End Mini Game Section -->
+
+            <div class="result-section card" style="display:none;">
+                <h2>Voilà! Your Masterpiece:</h2>
+                <img id="resultImage" src="#" alt="Generated image">
+                <div class="result-actions">
+                    <a id="downloadLink" class="download-button" href="#" download="transformed_image.png" style="display:none;">Download Image</a>
+                    <button id="editGeneratedImageButton" class="cta-button secondary-cta" style="display:none;">Edit This Image</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by You & Pollinations.AI</p>
+        </footer>
+    </div>
+
+    <!-- Camera Modal -->
+    <div id="cameraModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal-button" id="closeCameraModal">&times;</span>
+            <h2>Take a Photo</h2>
+            <div class="video-wrapper">
+                <video id="cameraFeed" autoplay playsinline></video>
+            </div>
+            <canvas id="photoCanvas" style="display:none;"></canvas>
+            <div class="camera-controls">
+                <button id="snapPhotoButton" class="cta-button">Snap Photo</button>
+                <button id="cancelCameraButton" class="cta-button secondary-cta">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "canvas-confetti": "https://cdn.skypack.dev/canvas-confetti"
+        }
+      }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
