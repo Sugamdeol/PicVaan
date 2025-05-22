@@ -1,16 +1,168 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Image Alchemist ✨</title>
+    <title>PicVaan ✨ - Your Digital Forest of AI Art</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Sugam Splash Loader Styles */
+        @keyframes animatedGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes twinkleStars1 {
+            0%, 100% { opacity: 0.3; transform: scale(0.95) translateY(-2px); }
+            50% { opacity: 0.8; transform: scale(1) translateY(0px); }
+        }
+        @keyframes twinkleStars2 {
+            0%, 100% { opacity: 0.4; transform: scale(1) translateY(0px); }
+            50% { opacity: 0.9; transform: scale(1.05) translateY(2px); }
+        }
+
+        #sugam-splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a472a, #2d5a40, #1a472a, #2d5a40);
+            background-size: 400% 400%;
+            animation: animatedGradient 25s ease infinite;
+            animation-play-state: running;
+        }
+
+        #sugam-splash-screen::before,
+        #sugam-splash-screen::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #sugam-splash-screen::before {
+            box-shadow: 5vw 10vh 1px 1px rgba(220,255,220,0.7),
+                       15vw 80vh 0px 1px rgba(200,255,200,0.6),
+                       25vw 30vh 1px 1px rgba(220,255,220,0.8),
+                       35vw 90vh 0px 1px rgba(200,255,200,0.5),
+                       45vw 20vh 1px 1px rgba(220,255,220,0.7),
+                       55vw 70vh 0px 1px rgba(200,255,200,0.6),
+                       65vw 15vh 1px 1px rgba(220,255,220,0.8),
+                       75vw 85vh 0px 1px rgba(200,255,200,0.5),
+                       85vw 40vh 1px 1px rgba(220,255,220,0.7),
+                       95vw 60vh 0px 1px rgba(200,255,200,0.6);
+            animation: twinkleStars1 12s ease-in-out infinite alternate;
+        }
+
+        #sugam-splash-screen.sugam-splash-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sugam-splash-content {
+            text-align: center;
+            color: #e8ffe8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sugam-splash-signature {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .sugam-splash-signature .sugam-crafted-by {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 0.55em;
+            color: #c0e0c0;
+            display: block;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .sugam-splash-signature .sugam-name {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.7em;
+            color: #baFFba;
+            display: inline-block;
+            letter-spacing: 1.8px;
+            perspective: 1000px;
+            text-shadow: 0 0 10px rgba(186, 255, 186, 0.3);
+        }
+
+        .sugam-name span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px) rotateX(-60deg) scale(0.8);
+            filter: blur(4px);
+            transform-origin: center bottom;
+        }
+
+        .sugam-splash-loader-line-container {
+            width: 120px;
+            height: 2.5px;
+            margin: 35px auto 0;
+            opacity: 0;
+            transform: translateY(15px) scaleY(0.5);
+            transform-origin: center center;
+        }
+
+        .sugam-splash-loader-line-track {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(186, 255, 186, 0.15);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .sugam-splash-loader-line-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #baFFba;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Sugam Splash Screen -->
+    <div id="sugam-splash-screen">
+        <div class="sugam-splash-content">
+            <div class="sugam-splash-signature">
+                <span class="sugam-crafted-by">crafted.by.</span>
+                <div class="sugam-name">
+                    <span>s</span><span>u</span><span>g</span><span>a</span><span>m</span>
+                </div>
+            </div>
+            <div class="sugam-splash-loader-line-container">
+                <div class="sugam-splash-loader-line-track">
+                    <div class="sugam-splash-loader-line-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <header>
-            <h1>AI Image Alchemist ✨</h1>
-            <p>Transform images or create new ones from your imagination!</p>
+            <img src="picvaan-logo.png" alt="PicVaan" class="site-logo">
+            <h1>PicVaan ✨</h1>
+            <p>Your Digital Forest of AI-Powered Art</p>
         </header>
 
         <main>
@@ -87,7 +239,7 @@
             </button>
 
             <div id="statusMessageContainer" class="status-message-container">
-                 <p id="statusMessage"></p>
+                <p id="statusMessage"></p>
             </div>
             
             <div id="creativeCorner" class="card" style="display:none;">
@@ -95,16 +247,14 @@
                 <p id="creativeThought">Brewing up some brilliance...</p>
             </div>
 
-            <!-- Mini Game Section -->
             <div id="miniGameContainer" class="card" style="display:none;">
                 <h3>Quick Game Break! ✨</h3>
                 <p>Hold to shoot. Don't let aliens reach the bottom or hit you!</p>
                 <p>Score: <span id="gameScore">0</span> | Lives: <span id="gameLives">3</span></p>
                 <div id="gameArea">
-                    <!-- Sparkle will be added here by JS -->
+                    <!-- Game content added by JS -->
                 </div>
             </div>
-            <!-- End Mini Game Section -->
 
             <div class="result-section card" style="display:none;">
                 <h2>Voilà! Your Masterpiece:</h2>
@@ -112,6 +262,14 @@
                 <div class="result-actions">
                     <a id="downloadLink" class="download-button" href="#" download="transformed_image.png" style="display:none;">Download Image</a>
                     <button id="editGeneratedImageButton" class="cta-button secondary-cta" style="display:none;">Edit This Image</button>
+                </div>
+            </div>
+
+            <!-- New Gallery Section -->
+            <div class="gallery-section card">
+                <h2>Your Forest Gallery</h2>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery items will be added here by JS -->
                 </div>
             </div>
         </main>
@@ -144,6 +302,7 @@
         }
       }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
