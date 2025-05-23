@@ -1,153 +1,19 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PicVaan ✨ - Your Digital Forest of AI Art</title>
+    <title>PicVaan - Transform Your Vision</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
-    <style>
-        /* Sugam Splash Loader Styles */
-        @keyframes animatedGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes twinkleStars1 {
-            0%, 100% { opacity: 0.3; transform: scale(0.95) translateY(-2px); }
-            50% { opacity: 0.8; transform: scale(1) translateY(0px); }
-        }
-        @keyframes twinkleStars2 {
-            0%, 100% { opacity: 0.4; transform: scale(1) translateY(0px); }
-            50% { opacity: 0.9; transform: scale(1.05) translateY(2px); }
-        }
-
-        #sugam-splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-            opacity: 0;
-            pointer-events: none;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1a472a, #2d5a40, #1a472a, #2d5a40);
-            background-size: 400% 400%;
-            animation: animatedGradient 25s ease infinite;
-            animation-play-state: running;
-        }
-
-        #sugam-splash-screen::before,
-        #sugam-splash-screen::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        #sugam-splash-screen::before {
-            box-shadow: 5vw 10vh 1px 1px rgba(220,255,220,0.7),
-                       15vw 80vh 0px 1px rgba(200,255,200,0.6),
-                       25vw 30vh 1px 1px rgba(220,255,220,0.8),
-                       35vw 90vh 0px 1px rgba(200,255,200,0.5),
-                       45vw 20vh 1px 1px rgba(220,255,220,0.7),
-                       55vw 70vh 0px 1px rgba(200,255,200,0.6),
-                       65vw 15vh 1px 1px rgba(220,255,220,0.8),
-                       75vw 85vh 0px 1px rgba(200,255,200,0.5),
-                       85vw 40vh 1px 1px rgba(220,255,220,0.7),
-                       95vw 60vh 0px 1px rgba(200,255,200,0.6);
-            animation: twinkleStars1 12s ease-in-out infinite alternate;
-        }
-
-        #sugam-splash-screen.sugam-splash-visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .sugam-splash-content {
-            text-align: center;
-            color: #e8ffe8;
-            position: relative;
-            z-index: 1;
-        }
-
-        .sugam-splash-signature {
-            font-size: 2.8rem;
-            line-height: 1.2;
-            font-weight: 300;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .sugam-splash-signature .sugam-crafted-by {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            font-size: 0.55em;
-            color: #c0e0c0;
-            display: block;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .sugam-splash-signature .sugam-name {
-            font-family: 'Pacifico', cursive;
-            font-size: 1.7em;
-            color: #baFFba;
-            display: inline-block;
-            letter-spacing: 1.8px;
-            perspective: 1000px;
-            text-shadow: 0 0 10px rgba(186, 255, 186, 0.3);
-        }
-
-        .sugam-name span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(40px) rotateX(-60deg) scale(0.8);
-            filter: blur(4px);
-            transform-origin: center bottom;
-        }
-
-        .sugam-splash-loader-line-container {
-            width: 120px;
-            height: 2.5px;
-            margin: 35px auto 0;
-            opacity: 0;
-            transform: translateY(15px) scaleY(0.5);
-            transform-origin: center center;
-        }
-
-        .sugam-splash-loader-line-track {
-            width: 100%;
-            height: 100%;
-            background-color: rgba(186, 255, 186, 0.15);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .sugam-splash-loader-line-fill {
-            width: 0%;
-            height: 100%;
-            background-color: #baFFba;
-            border-radius: 2px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Sugam Splash Screen -->
+    <!-- Splash Screen -->
     <div id="sugam-splash-screen">
         <div class="sugam-splash-content">
             <div class="sugam-splash-signature">
                 <span class="sugam-crafted-by">crafted.by.</span>
                 <div class="sugam-name">
-                    <span>s</span><span>u</span><span>g</span><span>a</span><span>m</span>
+                    <span>p</span><span>i</span><span>c</span><span>v</span><span>a</span><span>a</span><span>n</span>
                 </div>
             </div>
             <div class="sugam-splash-loader-line-container">
@@ -158,124 +24,187 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container main-content" style="display: none;">
+        <!-- Header Section -->
         <header>
-            <img src="picvaan-logo.png" alt="PicVaan" class="site-logo">
-            <h1>PicVaan ✨</h1>
-            <p>Your Digital Forest of AI-Powered Art</p>
+            <div class="logo-container">
+                <img src="/IMG_20250521_232554-removebg-preview.png" alt="PicVaan Logo" class="app-logo">
+                <div class="forest-elements">
+                    <span class="tree">🌲</span>
+                    <span class="tree">🌳</span>
+                    <span class="leaf">🍃</span>
+                </div>
+            </div>
+            <h1>PicVaan</h1>
+            <p class="tagline">🌿 Where Your Vision Grows into Art 🌿</p>
+            <p class="subtitle">Transform images or create new ones from your imagination in the digital forest!</p>
         </header>
 
-        <main>
-            <div class="mode-selection card">
-                <h2>Choose Your Path:</h2>
-                <div class="radio-group">
-                    <input type="radio" id="modeEdit" name="generationMode" value="edit" checked>
-                    <label for="modeEdit">Edit Existing Image</label>
-                    <input type="radio" id="modeCreate" name="generationMode" value="create">
-                    <label for="modeCreate">Create New Image from Text</label>
-                </div>
-            </div>
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab-button active" data-view="main">
+                <span class="tab-icon">✨</span>
+                Generate/Edit
+            </button>
+            <button class="tab-button" data-view="gallery">
+                <span class="tab-icon">🖼️</span>
+                Gallery
+            </button>
+        </nav>
 
-            <div class="controls-grid">
-                <div class="upload-section card" id="uploadSectionContainer">
-                    <h2>1. Your Image</h2>
-                    <div class="upload-options">
-                        <label for="imageUpload" class="upload-button">
-                            <img src="upload-icon.png" alt="Upload Icon" class="upload-icon-img">
-                            <span>Choose Image</span>
+        <!-- Main View -->
+        <div id="mainView" class="view active">
+            <main>
+                <!-- Mode Selection Card -->
+                <div class="mode-selection card">
+                    <h2>🎨 Choose Your Creative Path:</h2>
+                    <div class="radio-group">
+                        <input type="radio" id="modeEdit" name="generationMode" value="edit" checked>
+                        <label for="modeEdit">
+                            <span class="mode-icon">🖼️</span>
+                            Edit Existing Image
                         </label>
-                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-                        
-                        <button id="takePhotoButton" class="upload-button secondary-upload-button">
-                            <img src="camera-icon.png" alt="Camera Icon" class="upload-icon-img">
-                            <span>Take Photo</span>
+                        <input type="radio" id="modeCreate" name="generationMode" value="create">
+                        <label for="modeCreate">
+                            <span class="mode-icon">🎨</span>
+                            Create New Image from Text
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Controls Grid -->
+                <div class="controls-grid">
+                    <!-- Upload Section Card -->
+                    <div class="upload-section card" id="uploadSectionContainer">
+                        <h2>🌱 1. Your Image Seed</h2>
+                        <div class="upload-options">
+                            <label for="imageUpload" class="upload-button">
+                                <img src="upload-icon.png" alt="Upload Icon" class="upload-icon-img">
+                                <span>Plant Your Image</span>
+                            </label>
+                            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                            
+                            <button id="takePhotoButton" class="upload-button secondary-upload-button">
+                                <img src="camera-icon.png" alt="Camera Icon" class="upload-icon-img">
+                                <span>Capture Moment</span>
+                            </button>
+                        </div>
+                        <div class="image-preview-container">
+                            <img id="imagePreview" src="#" alt="Your image" style="display:none;">
+                            <p id="previewPlaceholder" class="preview-placeholder-text">🌿 Your image will bloom here 🌿</p>
+                        </div>
+                    </div>
+
+                    <!-- Instructions Section Card -->
+                    <div class="instructions-section card">
+                        <h2 id="instructionsTitle">🌟 2. Describe Your Vision</h2>
+                        <label for="promptInput" class="sr-only">Transformation Instructions:</label>
+                        <textarea id="promptInput" rows="4" placeholder="e.g., 'a mystical forest painting', 'add magical fireflies', 'turn into an enchanted woodland'"></textarea>
+                    </div>
+                </div>
+
+                <!-- Quality and Dimension Section Card -->
+                <div class="quality-dimension-section card">
+                    <h2><span id="qualityStepNumber">🎯 3</span>. Quality & Canvas Size</h2>
+                    <div class="sub-section">
+                        <h3>🎨 Quality Level</h3>
+                        <div class="radio-group" id="qualityRadioGroup">
+                            <input type="radio" id="qualityLow" name="imageQuality" value="low">
+                            <label for="qualityLow">
+                                <span class="quality-icon">🌱</span>
+                                Fast Growth
+                            </label>
+                            <input type="radio" id="qualityMedium" name="imageQuality" value="medium" checked>
+                            <label for="qualityMedium">
+                                <span class="quality-icon">🌿</span>
+                                Balanced Bloom
+                            </label>
+                            <input type="radio" id="qualityHigh" name="imageQuality" value="high">
+                            <label for="qualityHigh">
+                                <span class="quality-icon">🌳</span>
+                                Masterpiece Tree
+                            </label>
+                        </div>
+                    </div>
+                    <div class="sub-section" id="dimensionsSection">
+                        <h3>📐 Canvas Dimensions</h3>
+                        <div class="dimension-inputs">
+                            <div>
+                                <label for="outputWidth">Width (px):</label>
+                                <input type="number" id="outputWidth" name="outputWidth" placeholder="e.g., 512" value="512" min="64" max="2048" step="64">
+                            </div>
+                            <div>
+                                <label for="outputHeight">Height (px):</label>
+                                <input type="number" id="outputHeight" name="outputHeight" placeholder="e.g., 512" value="512" min="64" max="2048" step="64">
+                            </div>
+                        </div>
+                        <p class="dimension-note">🍃 Note: In 'Edit Image' mode, these often default to the input image's dimensions but can be overridden for the output.</p>
+                    </div>
+                </div>
+
+                <!-- Transform Button -->
+                <button id="transformButton" class="cta-button" disabled>
+                    <span class="button-text">🌟 Grow Your Vision! 🌟</span>
+                    <div class="spinner" style="display: none;"></div>
+                </button>
+
+                <!-- Status Message Container -->
+                <div id="statusMessageContainer" class="status-message-container">
+                     <p id="statusMessage"></p>
+                </div>
+                
+                <!-- Creative Corner Card -->
+                <div id="creativeCorner" class="card" style="display:none;">
+                    <h3>🌸 Creative Corner</h3>
+                    <p id="creativeThought">Seeds of inspiration are sprouting...</p>
+                </div>
+
+                <!-- Mini Game Container Card -->
+                <div id="miniGameContainer" class="card" style="display:none;">
+                    <h3>🚀 Space Forest Defense! 🌌</h3>
+                    <p>🎮 Hold to shoot cosmic energy! Protect the forest from alien invaders!</p>
+                    <p>Score: <span id="gameScore">0</span> | Lives: <span id="gameLives">3</span> 🛡️</p>
+                    <div id="gameArea">
+                        <!-- Sparkle will be added here by JS -->
+                    </div>
+                </div>
+                <!-- End Mini Game Section -->
+
+                <!-- Result Section Card -->
+                <div class="result-section card" style="display:none;">
+                    <h2>🌺 Voilà! Your Digital Masterpiece Blooms:</h2>
+                    <img id="resultImage" src="#" alt="Generated image">
+                    <div class="result-actions">
+                        <a id="downloadLink" class="download-button" href="#" download="picvaan_creation.png" style="display:none;">
+                            <span class="button-icon">💾</span>
+                            Harvest Your Art
+                        </a>
+                        <button id="editGeneratedImageButton" class="cta-button secondary-cta" style="display:none;">
+                            <span class="button-icon">✏️</span>
+                            Cultivate Further
                         </button>
                     </div>
-                    <div class="image-preview-container">
-                        <img id="imagePreview" src="#" alt="Your image" style="display:none;">
-                        <p id="previewPlaceholder" class="preview-placeholder-text">Image preview will appear here</p>
-                    </div>
                 </div>
+            </main>
+        </div> <!-- #mainView -->
 
-                <div class="instructions-section card">
-                    <h2 id="instructionsTitle">2. Describe Transformation</h2>
-                    <label for="promptInput" class="sr-only">Transformation Instructions:</label>
-                    <textarea id="promptInput" rows="4" placeholder="e.g., 'a vibrant oil painting', 'a dragon in the sky', 'cyberpunk art style'"></textarea>
-                </div>
-            </div>
-
-            <div class="quality-dimension-section card">
-                <h2><span id="qualityStepNumber">3</span>. Quality & Output Size</h2>
-                <div class="sub-section">
-                    <h3>Quality Level</h3>
-                    <div class="radio-group" id="qualityRadioGroup">
-                        <input type="radio" id="qualityLow" name="imageQuality" value="low">
-                        <label for="qualityLow">Low</label>
-                        <input type="radio" id="qualityMedium" name="imageQuality" value="medium" checked>
-                        <label for="qualityMedium">Medium</label>
-                        <input type="radio" id="qualityHigh" name="imageQuality" value="high">
-                        <label for="qualityHigh">High</label>
-                    </div>
-                </div>
-                <div class="sub-section" id="dimensionsSection">
-                    <h3>Output Dimensions</h3>
-                    <div class="dimension-inputs">
-                        <div>
-                            <label for="outputWidth">Width (px):</label>
-                            <input type="number" id="outputWidth" name="outputWidth" placeholder="e.g., 512" value="512" min="64" max="2048" step="64">
-                        </div>
-                        <div>
-                            <label for="outputHeight">Height (px):</label>
-                            <input type="number" id="outputHeight" name="outputHeight" placeholder="e.g., 512" value="512" min="64" max="2048" step="64">
-                        </div>
-                    </div>
-                    <p class="dimension-note">Note: In 'Edit Image' mode, these often default to the input image's dimensions but can be overridden for the output.</p>
+        <!-- Gallery View -->
+        <div id="galleryView" class="view">
+             <div class="gallery-section card">
+                <h2>🏞️ Your Art Forest Gallery</h2>
+                <p id="galleryEmptyMessage" style="display: none;">🌿 Your gallery forest is waiting for its first creation! Generate some images to see them flourish here! 🌱</p>
+                <div id="galleryGrid">
+                    <!-- Gallery items will be loaded here -->
                 </div>
             </div>
+        </div> <!-- #galleryView -->
 
-            <button id="transformButton" class="cta-button" disabled>
-                <span class="button-text">Transform!</span>
-                <div class="spinner" style="display: none;"></div>
-            </button>
-
-            <div id="statusMessageContainer" class="status-message-container">
-                <p id="statusMessage"></p>
-            </div>
-            
-            <div id="creativeCorner" class="card" style="display:none;">
-                <h3>Creative Corner</h3>
-                <p id="creativeThought">Brewing up some brilliance...</p>
-            </div>
-
-            <div id="miniGameContainer" class="card" style="display:none;">
-                <h3>Quick Game Break! ✨</h3>
-                <p>Hold to shoot. Don't let aliens reach the bottom or hit you!</p>
-                <p>Score: <span id="gameScore">0</span> | Lives: <span id="gameLives">3</span></p>
-                <div id="gameArea">
-                    <!-- Game content added by JS -->
-                </div>
-            </div>
-
-            <div class="result-section card" style="display:none;">
-                <h2>Voilà! Your Masterpiece:</h2>
-                <img id="resultImage" src="#" alt="Generated image">
-                <div class="result-actions">
-                    <a id="downloadLink" class="download-button" href="#" download="transformed_image.png" style="display:none;">Download Image</a>
-                    <button id="editGeneratedImageButton" class="cta-button secondary-cta" style="display:none;">Edit This Image</button>
-                </div>
-            </div>
-
-            <!-- New Gallery Section -->
-            <div class="gallery-section card">
-                <h2>Your Forest Gallery</h2>
-                <div class="gallery-grid" id="galleryGrid">
-                    <!-- Gallery items will be added here by JS -->
-                </div>
-            </div>
-        </main>
-
+        <!-- Footer -->
         <footer>
-            <p>Powered by You & Pollinations.AI</p>
+            <div class="footer-content">
+                <p>🌲 Powered by Nature's AI & Pollinations.AI 🌲</p>
+                <p class="forest-quote">"Every great image starts as a seed of imagination"</p>
+            </div>
         </footer>
     </div>
 
@@ -283,18 +212,25 @@
     <div id="cameraModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close-modal-button" id="closeCameraModal">&times;</span>
-            <h2>Take a Photo</h2>
+            <h2>📸 Capture Your Moment</h2>
             <div class="video-wrapper">
                 <video id="cameraFeed" autoplay playsinline></video>
             </div>
             <canvas id="photoCanvas" style="display:none;"></canvas>
             <div class="camera-controls">
-                <button id="snapPhotoButton" class="cta-button">Snap Photo</button>
-                <button id="cancelCameraButton" class="cta-button secondary-cta">Cancel</button>
+                <button id="snapPhotoButton" class="cta-button">
+                    <span class="button-icon">📷</span>
+                    Snap Photo
+                </button>
+                <button id="cancelCameraButton" class="cta-button secondary-cta">
+                    <span class="button-icon">❌</span>
+                    Cancel
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script type="importmap">
       {
         "imports": {
