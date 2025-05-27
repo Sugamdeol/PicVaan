@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Constants and variables
     const MAX_IMAGE_DIMENSION = 1024;
     const DEFAULT_OUTPUT_DIMENSION = 512;
-    const TMPFILES_API_URL = 'https://tmpfiles.org/api/v1/upload';
+    const LITTERBOX_API_URL = 'https://litterbox.catbox.moe/resources/internals/api.php';
     const PLAYER_SIZE = 30;
     const BULLET_SIZE = 8;
     const ENEMY_SIZE = 25;
@@ -315,8 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modeEditRadio.checked = true;
                 await handleModeChange({ target: { value: 'edit' } });
                 
-                const imageDataUrl = await blobUrlToDataUrl(item.imageUrl);
-                await processImageInput(imageDataUrl, "gallery image");
+                await processImageInput(item.imageUrl, "gallery image");
                 
                 promptInput.value = item.prompt;
                 promptInput.focus();
@@ -447,31 +446,31 @@ document.addEventListener('DOMContentLoaded', () => {
     async function uploadToTmpFiles(fileObject) {
         setStatus('🌱 Planting your image in the cloud...', false);
         const formData = new FormData();
-        formData.append('file', fileObject);
+        formData.append('reqtype', 'fileupload');
+        formData.append('time', '1h');
+        formData.append('fileToUpload', fileObject);
 
         try {
-            const response = await fetch(TMPFILES_API_URL, {
+            const response = await fetch(LITTERBOX_API_URL, {
                 method: 'POST',
                 body: formData,
             });
-            const data = await response.json();
 
-            if (response.ok && data.status === 'success' && data.data && data.data.url) {
-                const viewerUrl = data.data.url;
-                const urlObj = new URL(viewerUrl);
-                const pathSegments = urlObj.pathname.split('/');
-                const fileId = pathSegments[1];
-                const fileName = pathSegments[2];
-                const directDownloadUrl = `https://tmpfiles.org/dl/${fileId}/${fileName}${urlObj.search}${urlObj.hash}`;
+            if (response.ok) {
+                const directDownloadUrl = await response.text();
                 
-                setStatus('🌿 Image ready for transformation!', false, true);
-                return directDownloadUrl;
+                if (directDownloadUrl && directDownloadUrl.startsWith('https://')) {
+                    setStatus('🌿 Image ready for transformation!', false, true);
+                    return directDownloadUrl.trim();
+                } else {
+                    throw new Error(`Litterbox API error: Invalid response - ${directDownloadUrl}`);
+                }
             } else {
-                const errorMessage = `tmpfiles.org error: ${data.message || JSON.stringify(data) || response.statusText}.`;
+                const errorMessage = `Litterbox API error: ${response.status} ${response.statusText}`;
                 throw new Error(errorMessage);
             }
         } catch (error) {
-            console.error('Error uploading to tmpfiles.org:', error);
+            console.error('Error uploading to litterbox.catbox.moe:', error);
             throw error;
         }
     }
@@ -870,8 +869,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!gameRunning) return; 
         gameRunning = false; 
         isShooting = false; 
-        console.log("Game Over! Final Score:", currentScore);
-        gameOverDisplayed = true; 
+
+        if (animationFrameId) cancelAnimationFrame(animationFrameId); 
+        gameLoop();
     }
 
     function gameLoop() {
@@ -1061,12 +1061,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('API did not return a valid image. Please try different instructions, image, or quality setting.');
             }
 
+            const generatedImageDataUrl = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.readAsDataURL(imageBlob);
+            });
+
             const generatedImageUrl = URL.createObjectURL(imageBlob);
             resultImage.src = generatedImageUrl;
             downloadLink.href = generatedImageUrl;
             downloadLink.download = `picvaan_creation_${Date.now()}.${imageBlob.type.split('/')[1] || 'png'}`;
             
-            saveToGallery(generatedImageUrl, instructions);
+            saveToGallery(generatedImageDataUrl, instructions);
             
             resultSection.style.display = 'block';
             downloadLink.style.display = 'inline-block';

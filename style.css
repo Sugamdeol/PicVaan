@@ -106,7 +106,7 @@
 
 body {
     font-family: var(--font-family);
-    background: linear-gradient(135deg, #0a0f0a 0%, #1a2f1a 50%, #0f1a0f 100%);
+    background: radial-gradient(circle at center, #4ade80 0%, #22c55e 30%, #16a34a 60%, #15803d 80%, #166534 100%);
     background-attachment: fixed;
     color: var(--text-color);
     line-height: 1.6;
