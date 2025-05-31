@@ -1025,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const instructions = promptInput.value.trim();
         const seed = Math.floor(Math.random() * 10000000);
-        const POLLINATIONS_TOKEN = 'sugamdeol';
+        const POLLINATIONS_TOKEN = 'BVhzmS9nBtA3U0O0';
 
         let apiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(instructions)}` +
                        `?model=gptimage` + 
